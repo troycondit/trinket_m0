@@ -39,13 +39,13 @@ int main(void)
 
 
 	led.on();
-	led.off();
+	led.off(); 
 	led.toggle();
 
-	Gpio spi_clk(PIN_PA01);
-	Gpio spi_mosi(PIN_PA00);
-	Gpio spi_miso(PIN_NULL);
-	Gpio spi_ss(PIN_NULL);
+	Gpio spi_clk(PIN_PA01, 0, Gpio::OUT );
+	Gpio spi_mosi(PIN_PA00, 0, Gpio::OUT );
+	Gpio spi_miso(PIN_NULL, 0, Gpio::IN );
+	Gpio spi_ss(PIN_NULL, 0, Gpio::OUT);
 
 	Spi_bb spi_dev(spi_clk,spi_mosi,spi_miso,spi_ss,1,1,spi_delay);
 

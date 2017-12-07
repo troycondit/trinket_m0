@@ -21,8 +21,11 @@
 			if(FN_CLOCK_DELAY_ == nullptr )
 				FN_CLOCK_DELAY_ = nop;
 		
+	
+			this->deselect_slave();
 			//set clock line to the correct idle state
 			sclk_.set(cpol_);
+			
 
 		}
 		
@@ -63,6 +66,20 @@
 		{
 			for(int inx = 0; inx < size; inx ++)
 				rx_buff[inx] = this->tx(tx_buff[inx]);
+		}
+		//
+		//
+		//
+		void Spi_bb::select_slave()
+		{
+			this->ss_.clear();
+		}
+		//
+		//
+		//
+		void Spi_bb::deselect_slave()
+		{
+			this->ss_.set();
 		}
 		//
 		//

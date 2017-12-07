@@ -15,9 +15,10 @@
 
 class Gpio
 {
+	public:
 	enum direction {IN,OUT};
 	#define PIN_NULL 0xFFFF
-	public:
+
 		Gpio( int pin, int port = 0, enum direction  d = OUT );
 		void set(bool value = true);
 		void clear();	

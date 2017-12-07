@@ -21,6 +21,9 @@ class Spi_bb
 		// FN_CLOCK_DELAY  pointer to a delay function
 		Spi_bb( Gpio clock, Gpio mosi, Gpio miso, Gpio slave_select, bool cpol = 1, bool cpha  = 1, void(*FN_CLOCK_DELAY)() = nullptr );
 		
+		//select slave pulls slave select line low
+		void select_slave();
+		void deselect_slave();
 		//tx a single byte, returns byte received
 		char tx( char value );
 		//tx and rx many bytes, both buffers must be at as big as size
