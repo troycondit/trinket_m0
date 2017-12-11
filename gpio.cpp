@@ -15,10 +15,14 @@ Gpio::Gpio( int pin, int port, enum direction  d )
 		return;
 
 	if(direction_ == IN )
+	{
 		PORT->Group[port_].DIRCLR.bit.DIRCLR = d << pin_;
+		PORT->Group[port_].PINCFG[pin_].bit.INEN = 1;
+	}	
 	else
+	{
 		PORT->Group[port_].DIRSET.bit.DIRSET = d << pin_;
-
+	}
 };
 //
 //

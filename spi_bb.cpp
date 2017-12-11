@@ -19,36 +19,33 @@
 		
 		{
 			if(FN_CLOCK_DELAY_ == nullptr )
-				FN_CLOCK_DELAY_ = nop;
-		
+				FN_CLOCK_DELAY_ = nop;		
 	
 			this->deselect_slave();
 			//set clock line to the correct idle state
 			sclk_.set(cpol_);
-			
-
 		}
-		
+		//
+		//
 		//tx a single byte, returns byte received
 		char Spi_bb::tx( char data )
 		{
 			char rx_val = 0;
 			if( cpha_)
 			{
-				for(int inx = 8; inx  ; --inx )
+				for(int inx = 7; inx > -1 ; --inx )
 				{
 					mosi_.set( (data >> inx) & 1);
 					rx_val += miso_.value() << inx;
 					this->FN_CLOCK_DELAY_();
 					sclk_.toggle();
 					this->FN_CLOCK_DELAY_();
-					sclk_.toggle();
-				
+					sclk_.toggle();				
 				}
 			}
 			else
 			{
-				for(int inx = 8; inx  ; --inx )
+				for(int inx = 7; inx > -1 ; --inx )
 				{
 					this->FN_CLOCK_DELAY_();
 					sclk_.toggle();
